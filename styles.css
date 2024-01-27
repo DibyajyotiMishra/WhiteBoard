@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.options-container {
+  height: 3rem;
+  width: 3rem;
+  background-color: #ededed;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.tools-container {
+  display: flex;
+  height: 3rem;
+  width: 45vw;
+  background-color: #ededed;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 2.4rem;
+  left: 30vw;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.tools-container > * {
+  display: block;
+  width: 2rem;
+}
+
+img {
+  height: 75%;
+  width: 100%;
+}
+
+img:hover {
+  cursor: pointer;
+  transform: scale(0.95);
+}
