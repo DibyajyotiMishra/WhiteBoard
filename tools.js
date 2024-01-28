@@ -7,6 +7,8 @@ let eraseTool = document.querySelector(".erase");
 let optionsContainerVisible = true,
   drawToolContainerVisible = false,
   eraseToolContainerVisible = false;
+
+/** Hides and shows the tools container when the icon is clicked. */
 optionsContainer.addEventListener("click", e => {
   optionsContainerVisible = !optionsContainerVisible;
 
@@ -17,6 +19,10 @@ optionsContainer.addEventListener("click", e => {
   }
 });
 
+/**
+ * Function to show the tools by updating the icon
+ * and displaying the tools container.
+ */
 function showTools() {
   let iconElement = optionsContainer.children[0];
   iconElement.classList.remove("fa-bars");
@@ -26,6 +32,10 @@ function showTools() {
   toolsContainer.style.display = "flex";
 }
 
+/**
+ * Hides the tools by updating the icon
+ * and hiding the tool containers.
+ */
 function hideTools() {
   let iconElement = optionsContainer.children[0];
   iconElement.classList.remove("fa-xmark");
@@ -37,6 +47,7 @@ function hideTools() {
   eraseToolContainer.style.display = "none";
 }
 
+/** Hides and shows the Draw tool container when the icon is clicked. */
 drawTool.addEventListener("click", e => {
   drawToolContainerVisible = !drawToolContainerVisible;
   if (drawToolContainerVisible) {
@@ -47,6 +58,7 @@ drawTool.addEventListener("click", e => {
   }
 });
 
+/** Hides and shows the Erase tool container when the icon is clicked. */
 eraseTool.addEventListener("click", e => {
   eraseToolContainerVisible = !eraseToolContainerVisible;
   if (eraseToolContainerVisible) {
