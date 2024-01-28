@@ -8,6 +8,7 @@ let drawTool = document.querySelector(".draw");
 let eraseToolContainer = document.querySelector(".erase-tool-container");
 let eraseTool = document.querySelector(".erase");
 let stickynoteTool = document.querySelector(".stickynote");
+let uploadTool = document.querySelector(".upload");
 
 let optionsContainerVisible = true,
   drawToolContainerVisible = false,
@@ -74,15 +75,19 @@ eraseTool.addEventListener("click", e => {
   }
 });
 
-/** Creates a new stickynote when the icon is clicked. */
-stickynoteTool.addEventListener("click", e => {
-  // create the stickynote container
-  let stickynoteContainer = document.createElement("div");
+/** Uploads an image into the canvas when the icon is clicked. */
+uploadTool.addEventListener("click", e => {
+  // Open file explorer on upload button click
+  let input = document.createElement("input");
+  input.setAttribute("type", "file");
+  input.setAttribute("accept", "image/*");
+  input.click();
 
-  stickynoteContainer.setAttribute("class", "stickynote-container");
-
-  // set the header and content of the stickynote container
-  stickynoteContainer.innerHTML = `
+  input.addEventListener("change", e => {
+    let file = input.files[0];
+    let url = URL.createObjectURL(file);
+    // Add image to canvas
+    let imageHtml = `
     <div class="container-header">
       <div class="close">
         <i class="fa-solid fa-xmark note-close-icon" title="Close"></i>
@@ -95,9 +100,48 @@ stickynoteTool.addEventListener("click", e => {
       </div>
     </div>
     <div class="note-container">
-      <textarea></textarea>
+      <img src="${url}" alt="image" />
+    </div>
+    `;
+    addInnerHtmlToStickyNote(imageHtml);
+  });
+});
+
+/** Creates a new stickynote when the icon is clicked. */
+stickynoteTool.addEventListener("click", e => {
+  let noteHtml = `
+    <div class="container-header">
+      <div class="close">
+        <i class="fa-solid fa-xmark note-close-icon" title="Close"></i>
+      </div>
+      <div class="minimize">
+        <i
+          class="fa-solid fa-window-minimize note-minimize-icon"
+          title="Minimize"
+        ></i>
+      </div>
+    </div>
+    <div class="note-container">
+      <textarea spellcheck="false"></textarea>
     </div>
   `;
+  addInnerHtmlToStickyNote(noteHtml);
+});
+
+/**
+ * Adds the given HTML content to a sticky note container and appends it to the body.
+ *
+ * @param {string} html - The HTML content to be added to the sticky note container.
+ * @return {void}
+ */
+function addInnerHtmlToStickyNote(html) {
+  // create the stickynote container
+  let stickynoteContainer = document.createElement("div");
+
+  stickynoteContainer.setAttribute("class", "stickynote-container");
+
+  // set the header and content of the stickynote container
+  stickynoteContainer.innerHTML = html;
 
   // append the stickynote container to the body
   document.body.appendChild(stickynoteContainer);
@@ -112,7 +156,7 @@ stickynoteTool.addEventListener("click", e => {
   // implement drag and drop functionality
   stickynoteContainer.onmousedown = e => implementDnd(stickynoteContainer, e);
   stickynoteContainer.ondragstart = () => false;
-});
+}
 
 /**
  * Implement the minimize and close functionality for sticky notes.
