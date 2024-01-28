@@ -20,6 +20,7 @@ body {
   border-radius: 50%;
   font-size: 1.5rem;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  cursor: pointer;
 }
 
 .tools-container {
@@ -37,6 +38,54 @@ body {
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
+.animate-container {
+  animation: animate 2s ease-in-out 0s 1 normal forwards;
+}
+
+@keyframes animate {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  38% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  55% {
+    animation-timing-function: ease-in;
+    transform: scale(0.7);
+  }
+
+  72% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+  }
+
+  81% {
+    animation-timing-function: ease-in;
+    transform: scale(0.84);
+  }
+
+  89% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+  }
+
+  95% {
+    animation-timing-function: ease-in;
+    transform: scale(0.95);
+  }
+
+  100% {
+    animation-timing-function: ease-out;
+    transform: scale(1);
+  }
+}
+
 .tools-container > * {
   display: block;
   width: 2rem;
@@ -50,4 +99,77 @@ img {
 img:hover {
   cursor: pointer;
   transform: scale(0.95);
+}
+
+.draw-tool-container {
+  height: 5rem;
+  width: 8rem;
+  position: absolute;
+  top: 7rem;
+  left: 30vw;
+  background-color: #ededed;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px;
+  display: none;
+}
+
+.draw-width-container {
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.draw-width-container > input {
+  width: 80%;
+}
+
+.draw-color-container {
+  height: calc(100% - 2rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.tool-color {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.black {
+  background-color: black;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.erase-tool-container {
+  height: 2rem;
+  width: 8rem;
+  background-color: orange;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 7rem;
+  left: 36vw;
+  background-color: #ededed;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px;
+}
+
+.erase-tool-container > input {
+  width: 80%;
 }

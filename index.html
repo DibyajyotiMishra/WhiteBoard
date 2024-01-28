@@ -17,17 +17,58 @@
   </head>
   <body>
     <div class="options-container">
-      <i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-xmark" title="Hide Tools"></i>
     </div>
-    <div class="tools-container">
-      <img src="./assets/icons/pencil.svg" title="draw" alt="pencil" />
-      <img src="./assets/icons/eraser.svg" title="erase" alt="eraser" />
-      <img src="./assets/icons/undo.svg" title="undo" alt="undo" />
-      <img src="./assets/icons/redo.svg" title="redo" alt="redo" />
-      <img src="./assets/icons/stickynote.svg" title="note" alt="stickynote" />
-      <img src="./assets/icons/upload.svg" title="upload" alt="upload" />
-      <img src="./assets/icons/download.svg" title="download" alt="download" />
+    <div class="tools-container animate-container">
+      <img
+        src="./assets/icons/pencil.svg"
+        title="draw"
+        alt="pencil"
+        class="draw"
+      />
+      <img
+        src="./assets/icons/eraser.svg"
+        title="erase"
+        alt="eraser"
+        class="erase"
+      />
+      <img src="./assets/icons/undo.svg" title="undo" alt="undo" class="undo" />
+      <img src="./assets/icons/redo.svg" title="redo" alt="redo" class="redo" />
+      <img
+        src="./assets/icons/stickynote.svg"
+        title="note"
+        alt="stickynote"
+        class="stickynote"
+      />
+      <img
+        src="./assets/icons/upload.svg"
+        title="upload"
+        alt="upload"
+        class="upload"
+      />
+      <img
+        src="./assets/icons/download.svg"
+        title="download"
+        alt="download"
+        class="download"
+      />
     </div>
+
+    <div class="draw-tool-container">
+      <div class="draw-width-container">
+        <input type="range" name="draw-width" min="2" max="10" value="3" />
+      </div>
+      <div class="draw-color-container">
+        <div class="black tool-color"></div>
+        <div class="blue tool-color"></div>
+        <div class="red tool-color"></div>
+        <div class="green tool-color"></div>
+      </div>
+    </div>
+    <div class="erase-tool-container">
+      <input type="range" name="draw-width" min="2" max="10" value="3" />
+    </div>
+
     <script src="./tools.js"></script>
   </body>
 </html>
