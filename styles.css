@@ -173,3 +173,92 @@ img:hover {
 .erase-tool-container > input {
   width: 80%;
 }
+
+.stickynote-container {
+  height: 15rem;
+  width: 15rem;
+  position: absolute;
+  top: 10rem;
+  left: 45%;
+}
+
+.container-header {
+  height: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f8f8f8;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.container-header > * {
+  height: 0.9rem;
+  width: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.minimize {
+  background-color: #ead81a;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.minimize:hover {
+  cursor: pointer;
+}
+
+.minimize:hover .note-minimize-icon {
+  display: block;
+}
+
+.close {
+  background-color: #eb1717;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.close:hover .note-close-icon {
+  display: block;
+}
+
+.note-close-icon {
+  font-size: 0.6rem;
+  margin-top: 0.138rem;
+  margin-right: 0.025rem;
+  display: none;
+}
+
+.note-minimize-icon {
+  font-size: 0.56rem;
+  margin-bottom: 0.3rem;
+  margin-right: 0.01rem;
+  display: none;
+}
+
+.note-container {
+  height: calc(100% - 2rem);
+}
+
+.note-container > textarea {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  background-color: #ededed;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px;
+}

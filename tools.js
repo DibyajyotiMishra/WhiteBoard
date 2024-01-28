@@ -1,9 +1,14 @@
+// tools.js
+
+// UI elements
 let optionsContainer = document.querySelector(".options-container");
 let toolsContainer = document.querySelector(".tools-container");
 let drawToolContainer = document.querySelector(".draw-tool-container");
 let drawTool = document.querySelector(".draw");
 let eraseToolContainer = document.querySelector(".erase-tool-container");
 let eraseTool = document.querySelector(".erase");
+let stickynoteTool = document.querySelector(".stickynote");
+
 let optionsContainerVisible = true,
   drawToolContainerVisible = false,
   eraseToolContainerVisible = false;
@@ -68,3 +73,103 @@ eraseTool.addEventListener("click", e => {
     eraseToolContainer.style.display = "none";
   }
 });
+
+/** Creates a new stickynote when the icon is clicked. */
+stickynoteTool.addEventListener("click", e => {
+  // create the stickynote container
+  let stickynoteContainer = document.createElement("div");
+
+  stickynoteContainer.setAttribute("class", "stickynote-container");
+
+  // set the header and content of the stickynote container
+  stickynoteContainer.innerHTML = `
+    <div class="container-header">
+      <div class="close">
+        <i class="fa-solid fa-xmark note-close-icon" title="Close"></i>
+      </div>
+      <div class="minimize">
+        <i
+          class="fa-solid fa-window-minimize note-minimize-icon"
+          title="Minimize"
+        ></i>
+      </div>
+    </div>
+    <div class="note-container">
+      <textarea></textarea>
+    </div>
+  `;
+
+  // append the stickynote container to the body
+  document.body.appendChild(stickynoteContainer);
+
+  // get minimize and close containers to add event listeners
+  let closeElement = stickynoteContainer.querySelector(".close");
+  let minimizeElement = stickynoteContainer.querySelector(".minimize");
+
+  // implement minimize and close functionality
+  stikcyNoteActions(closeElement, minimizeElement, stickynoteContainer);
+
+  // implement drag and drop functionality
+  stickynoteContainer.onmousedown = e => implementDnd(stickynoteContainer, e);
+  stickynoteContainer.ondragstart = () => false;
+});
+
+/**
+ * Implement the minimize and close functionality for sticky notes.
+ *
+ * @param {Element} closeElement - the element to close the sticky note
+ * @param {Element} minimizeElement - the element to minimize the sticky note
+ * @param {Element} stickynoteContainer - the container for the sticky note
+ */
+function stikcyNoteActions(closeElement, minimizeElement, stickynoteContainer) {
+  closeElement.addEventListener("click", e => {
+    stickynoteContainer.remove();
+  });
+
+  minimizeElement.addEventListener("click", e => {
+    let noteContainer = stickynoteContainer.querySelector(".note-container");
+    let displayValue =
+      getComputedStyle(noteContainer).getPropertyValue("display");
+    if (displayValue === "none") {
+      noteContainer.style.display = "block";
+    } else {
+      noteContainer.style.display = "none";
+    }
+  });
+}
+
+/**
+ * Implements drag and drop functionality for an element.
+ *
+ * @param {HTMLElement} element - The element to implement drag and drop on.
+ * @param {MouseEvent} event - The mouse event that triggered the drag and drop.
+ */
+function implementDnd(element, event) {
+  let shiftX = event.clientX - element.getBoundingClientRect().left;
+  let shiftY = event.clientY - element.getBoundingClientRect().top;
+
+  element.style.position = "absolute";
+  element.style.zIndex = 1000;
+
+  moveAt(event.pageX, event.pageY);
+
+  // moves the element at (pageX, pageY) coordinates
+  // taking initial shifts into account
+  function moveAt(pageX, pageY) {
+    element.style.left = pageX - shiftX + "px";
+    element.style.top = pageY - shiftY + "px";
+  }
+
+  function onMouseMove(event) {
+    moveAt(event.pageX, event.pageY);
+  }
+
+  // move the element on mousemove
+  document.addEventListener("mousemove", onMouseMove);
+
+  // drop the element, remove unneeded handlers
+  element.onmouseup = function () {
+    document.removeEventListener("mousemove", onMouseMove);
+    element.onmouseup = null;
+  };
+}
