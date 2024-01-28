@@ -1,0 +1,22 @@
+  #!/bin/sh
+  . "$(dirname "$0")/_/husky.sh"
+
+  command -v ./node_modules/.bin/svgo >/dev/null 2>&1 || { 
+      echo "\033[1mPlease install svgo to reduce images size before commit\033[0m" 
+      echo "Install svgo as a devDependency using npm install -D svgo" 
+      exit 1;
+  }
+
+for file in `git diff --diff-filter=ACMRT --cached --name-only | grep ".svg\$"`
+do 
+    exec < /dev/tty 
+    read -p "Do you want to compress $file? [yN]: " yn 
+    case $yn in 
+        [Yy]* ) 
+            echo "Compressing $file" 
+            ./node_modules/.bin/svgo $file -o ${file%.svg}.new 
+            mv -f ${file%.svg}.new $file
+            git add $file;;
+        * ) echo "Skipping $file" && continue;; 
+    esac 
+done

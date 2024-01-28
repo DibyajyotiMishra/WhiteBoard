@@ -1,0 +1,25 @@
+{
+  "name": "whiteboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tools.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DibyajyotiMishra/WhiteBoard.git"
+  },
+  "keywords": [],
+  "author": "Dibyajyoti Mishra <dibyajyotimishra14@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DibyajyotiMishra/WhiteBoard/issues"
+  },
+  "homepage": "https://github.com/DibyajyotiMishra/WhiteBoard#readme",
+  "devDependencies": {
+    "husky": "^9.0.6",
+    "svgo": "^3.2.0"
+  }
+}
